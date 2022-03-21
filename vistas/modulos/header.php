@@ -29,7 +29,8 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/css/font-awesome.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
-
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
 
@@ -53,7 +54,7 @@ if (strlen(session_id()) < 1)
         <!-- Logo -->
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>LA</b></span>
+          <span class="logo-mini"><b>TN</b></span>
           <b>"LADRICAL"</b>
           <!-- logo for regular state and mobile devices -->
           <!-- <img src="../files/AgroNegocios.png"> -->
@@ -134,30 +135,9 @@ if (strlen(session_id()) < 1)
             </li>';
             }
             ?>
-
-            <!--
-                para introducir la opción de productos en la pestaña de almacen
-                se debe de introducir el siguiente codigo :
-                <li id="navProducto"><a href="producto.php" id="navProducto"><i class="fa fa-plus-circle"></i> Productos</a></li>
-                el "producto.php" es un ejemplo de nombre, de preferencia que se llame producto.php
-              -->
-            <?php
-            if ($_SESSION['almacen']==1){
-              echo '<li class="treeview" id="navAlmacen">
-              <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Almacén</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu" id="navAlmacen">
-                <li id="navCategoria"><a href="categoria.php"><i class="fa fa-plus-circle"></i> Categorías</a></li>
-              </ul>
-            </li>';
-            }
-            ?>
                    
             <?php 
-            if ($_SESSION['personal']==1)
+            if ($_SESSION['almacen']==1)
             {
               echo '<li class="treeview" id="navAlmacen">
               <a href="#">
