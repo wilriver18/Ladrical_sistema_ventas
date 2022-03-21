@@ -59,7 +59,6 @@ if (strlen(session_id()) < 1)
           <!-- logo for regular state and mobile devices -->
           <!-- <img src="../files/AgroNegocios.png"> -->
         </a>
-
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
           <!-- Sidebar toggle button-->
@@ -82,8 +81,8 @@ if (strlen(session_id()) < 1)
                   <li class="user-header">
 
                     <p style="margin-top: 50px;">
-                      Sistema VENTAS LADRICAL
-                      <small>V 1.0</small>
+                      LADRICAL
+                      <small>V 2.0</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -142,29 +141,32 @@ if (strlen(session_id()) < 1)
             {
               echo '<li class="treeview" id="navAlmacen">
               <a href="#">
-                <i class="fa fa-user"></i>
-                <span>Personal</span>
+                <i class="fa fa-laptop"></i>
+                <span>Almacén</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu" id="navAlmacen">
-                <li id="navPersonal"><a href="#" id="navPersonal"><i class="fa fa-plus-circle"></i>MENU_1</a></li>
-                
+                <li id="navProducto"><a href="producto.php" id="navProducto"><i class="fa fa-plus-circle"></i> Productos</a></li>
+                <li id="navCategoria"><a href="categoria.php"><i class="fa fa-plus-circle"></i> Categorías</a></li>
               </ul>
             </li>';
             }
             ?>
-
-
-
-
-
-
-          
-
-            
-
-         
-                        
+            <?php 
+            if ($_SESSION['personal']==1)
+            {
+              echo '<li class="treeview" id="navPersonal">
+              <a href="#">
+                <i class="fa fa-user"></i> <span>Personal</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                
+                
+              </ul>
+            </li>';
+            }
+            ?>    
           </ul>
         </section>
         <!-- /.sidebar -->
