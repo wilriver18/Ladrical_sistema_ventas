@@ -139,7 +139,7 @@ if (strlen(session_id()) < 1)
                 para introducir la opción de productos en la pestaña de almacen
                 se debe de introducir el siguiente codigo :
                 <li id="navProducto"><a href="producto.php" id="navProducto"><i class="fa fa-plus-circle"></i> Productos</a></li>
-                el "producto.php" es un ejemplo de nombre
+                el "producto.php" es un ejemplo de nombre, de preferencia que se llame producto.php
               -->
             <?php
             if ($_SESSION['almacen']==1){
