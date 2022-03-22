@@ -23,10 +23,11 @@
   <link rel="stylesheet" href="../public/css/sweetalert.min.css" />
   </head>
   
-  <body class="hold-transition login-page" style="background-image: url(../files/fondo1.png); background-size: 100% 100%; background-attachment: fixed;">
+  <body class="hold-transition login-page" style="background-image: url(../public/img/ladrillo.jpg); background-size: 100% 100%; background-attachment: fixed;">
+  
     <div class="login-box">
       <div class="login-logo">
-        <a><h1> LADRICAL</i></h1></a>
+        <a><h1> <b>LADRICAL</b></i></h1></a>
       </div><!-- /.login-logo -->
       <div class="loginBox">
         <p class="login-box-msg">Ingrese sus datos de Acceso</p>

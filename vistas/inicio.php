@@ -16,9 +16,7 @@ require_once "../modelos/Negocio.php";
           <br>
           <ol class="breadcrumb">
             
-            <li><a href="inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            
-            <li class="active">Panel de control</li>
+           
           
           </ol>
         </section>
@@ -27,8 +25,7 @@ require_once "../modelos/Negocio.php";
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Inicio </h1>
-                          <small>Panel de control</small>
+                         
                         <div class="box-tools pull-right">
                           <button class="btn btn-box-tool" data-widget="collapse">
                           <i class="fa fa-minus"></i>

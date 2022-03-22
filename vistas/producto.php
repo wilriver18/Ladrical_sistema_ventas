@@ -20,9 +20,7 @@ if ($_SESSION['almacen']==1)
       <br>
         <ol class="breadcrumb">
       
-        <li><a href="inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-        <li class="active">Administrar Productos</li>
+       
     
         </ol>
        </section>        
@@ -90,7 +88,7 @@ if ($_SESSION['almacen']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:#ff8855; color:white">
+        <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cancelarform()">&times;</button>
           <h4 class="modal-title">
           Productos</h4>
@@ -134,7 +132,17 @@ if ($_SESSION['almacen']==1)
             </div>
           </div>
 
-          
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Código:</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras">
+                <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
+                <button class="btn btn-info" type="button" onclick="imprimir()"><i class="fa fa-print"></i></button>
+                <div id="print">
+                  <svg id="barcode"></svg>
+                </div>
+            </div>
+          </div>
 
           <div class="form-group col-12">
             <label for="name" class="col-sm-2 control-label">Precio de Venta:</label>
@@ -185,7 +193,7 @@ require 'modulos/footer.php';
 ?>
 <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
-<script type="text/javascript" src="js/producto.js"></script> 
+<script type="text/javascript" src="js/producto.js"></script>
 <script type="text/javascript" src="js/stocksbajos.js"></script>
 <?php 
 }

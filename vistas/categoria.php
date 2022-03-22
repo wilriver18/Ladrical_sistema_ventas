@@ -20,9 +20,8 @@ if ($_SESSION['almacen']==1)
     <ol class="breadcrumb">
       
       <li><a href="inicio
-        .php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        .php">
       
-      <li class="active">Administrar categorías</li>
     
     </ol>
   </section>
@@ -76,7 +75,7 @@ if ($_SESSION['almacen']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#da5315; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
           Categorías</h4>
