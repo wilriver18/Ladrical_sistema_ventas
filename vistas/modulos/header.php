@@ -47,6 +47,8 @@ if (strlen(session_id()) < 1)
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
 
+
+
     <div class="wrapper">
 
       <header class="main-header">
