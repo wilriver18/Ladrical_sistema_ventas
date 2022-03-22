@@ -1,4 +1,6 @@
 <?php 
+
+
 require_once "datos.php";
 
 $conexion=new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -10,6 +12,9 @@ if (mysqli_connect_errno()) {
 	printf("Falló en la conexion con la base de datos: %s\n",mysqli_connect_error());
 	exit();
 }
+
+
+
 
 //metodo para ejecutar consulta
 if (!function_exists('ejecutarConsulta')) 
