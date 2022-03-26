@@ -154,7 +154,23 @@ if (strlen(session_id()) < 1)
             </li>';
             }
             ?>
-            <?php 
+             <?php 
+            if ($_SESSION['ventas']==1)
+            {
+              echo '<li class="treeview" id="navVentasV">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Ventas</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li id="navVentasLi"><a href="venta.php"><i class="fa fa-plus-circle"></i> Ventas</a></li>
+                <li id="navClientesLi"><a href="cliente.php"><i class="fa fa-plus-circle"></i> Clientes</a></li>
+              </ul>
+            </li>';
+            }
+            ?>
+             <?php 
             if ($_SESSION['personal']==1)
             {
               echo '<li class="treeview" id="navPersonal">
@@ -163,12 +179,14 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                
+                <li id="navPersonalLi"><a href="empleado.php"><i class="fa fa-plus-circle"></i> Personal</a></li>
+                <li id="navUsuarioLi"><a href="usuario.php"><i class="fa fa-plus-circle"></i> Usuarios</a></li>
+                <li id="navPermisoLi"><a href="permiso.php"><i class="fa fa-plus-circle"></i> Permisos</a></li>
                 
               </ul>
             </li>';
             }
-            ?>    
+            ?> 
           </ul>
         </section>
         <!-- /.sidebar -->

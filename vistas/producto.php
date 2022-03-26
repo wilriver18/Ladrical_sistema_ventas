@@ -52,9 +52,7 @@ if ($_SESSION['almacen']==1)
               <thead>
                 <th>Nombre</th>
                 <th>Categoría</th>
-                <th>Código</th>
                 <th>Stock</th>
-                <th>N° Serie</th>
                 <th>Imagen</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -64,9 +62,7 @@ if ($_SESSION['almacen']==1)
               <tfoot>
                 <th>Nombre</th>
                 <th>Categoría</th>
-                <th>Código</th>
                 <th>Stock</th>
-                <th>N° Serie</th>
                 <th>Imagen</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -131,44 +127,16 @@ if ($_SESSION['almacen']==1)
               <img src="" class="img-thumbnail" id="imagenmuestra" width="100px">
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Código:</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras">
-                <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
-                <button class="btn btn-info" type="button" onclick="imprimir()"><i class="fa fa-print"></i></button>
-                <div id="print">
-                  <svg id="barcode"></svg>
-                </div>
-            </div>
-          </div>
-
           <div class="form-group col-12">
             <label for="name" class="col-sm-2 control-label">Precio de Venta:</label>
             <div class="col-sm-4">
               <input type="number" class="form-control" name="precio" id="precio" required>
             </div>
 
-            <label for="name" class="col-sm-2 control-label">Fecha de Vencimiento:</label>
-            <div class="col-sm-4">
-              <input style="border-color: #99C0E7; text-align:center" class="form-control pull-right" type="date" name="fecha_hora" id="fecha_hora">
-            </div>
-
-          </div>
-
-          <div class="form-group col-12">
-
-            <label for="name" class="col-sm-2 control-label">Modelo:</label>
+             <label for="name" class="col-sm-2 control-label">Marca:</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Ingrese Modelo">
             </div>
-
-            <label for="name" class="col-sm-2 control-label">N° Serie:</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" name="nserie" id="nserie" placeholder="Ingrese N° serie">
-            </div>
-            
 
           </div>
 
