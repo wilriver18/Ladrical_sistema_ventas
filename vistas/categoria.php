@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-//si la variable de sesion no existe
+//si la ariable de sesion no existe
 if (!isset($_SESSION["idpersonal"]))
 {
   header("Location: login.html");
@@ -13,15 +13,19 @@ require 'modulos/header.php';
 if ($_SESSION['almacen']==1)
 {
 ?>
-
+<!--Contenido-->
+<!-- Content Wrapper. Contains page content -->
+<!-- /.content-wrapper -->
+<!--Fin-Contenido-->
 <div class="content-wrapper">
   <section class="content-header">
     <br>
     <ol class="breadcrumb">
       
       <li><a href="inicio
-        .php">
+        .php"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
+      <li class="active">Administrar categorías</li>
     
     </ol>
   </section>
@@ -75,7 +79,7 @@ if ($_SESSION['almacen']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:#da5315; color:white">
+        <div class="modal-header" style="background:orange; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
           Categorías</h4>

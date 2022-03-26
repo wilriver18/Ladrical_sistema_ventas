@@ -66,14 +66,12 @@ switch ($_GET["op"]){
  			$data[]=array(
  				"0"=>$reg->nombre,
  				"1"=>$reg->categoria,
- 				"2"=>$reg->codigo,
- 				"3"=>($reg->stock > 5)?$reg->stock:
+ 				"2"=>($reg->stock > 5)?$reg->stock:
  				'<span class="badge bg-red">'.$reg->stock.'</span>',
- 				"4"=>$reg->numserie,
- 				"5"=>"<img src='../files/productos/".$reg->imagen."' height='50px' width='50px' >",
- 				"6"=>($reg->condicion)?'<span class="badge bg-green">ACTIVADO</span>':
+ 				"3"=>"<img src='../files/productos/".$reg->imagen."' height='50px' width='50px' >",
+ 				"4"=>($reg->condicion)?'<span class="badge bg-green">ACTIVADO</span>':
  				'<span class="badge bg-red">DESACTIVADO</span>',
- 				"7"=>($reg->condicion)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idproducto.')"><i class="fa fa-pencil"></i></button>'.
+ 				"5"=>($reg->condicion)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idproducto.')"><i class="fa fa-pencil"></i></button>'.
  					' <button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->idproducto.')"><i class="fa fa-close"></i></button>':
  					'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idproducto.')"><i class="fa fa-pencil"></i></button>'.
  					' <button class="btn btn-primary btn-xs" onclick="activar('.$reg->idproducto.')"><i class="fa fa-check"></i></button>'
