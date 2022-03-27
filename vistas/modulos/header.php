@@ -179,7 +179,7 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="navPersonalLi"><a href="empleado.php"><i class="fa fa-plus-circle"></i> Personal</a></li>
+                <li id="navPersonalLi"><a href="empleado.php"><i class="fa fa-plus-circle"></i> Personal actual</a></li>
                 <li id="navUsuarioLi"><a href="usuario.php"><i class="fa fa-plus-circle"></i> Usuarios</a></li>
                 <li id="navPermisoLi"><a href="permiso.php"><i class="fa fa-plus-circle"></i> Permisos</a></li>
                 
