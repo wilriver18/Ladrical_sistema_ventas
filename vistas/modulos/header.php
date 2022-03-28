@@ -105,7 +105,7 @@ if (strlen(session_id()) < 1)
       
       <!-- Left side column. contains the logo and sidebar -->
 
-      
+
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -163,7 +163,7 @@ if (strlen(session_id()) < 1)
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="navVentasLi"><a href="venta.php"><i class="fa fa-plus-circle"></i> Ventas</a></li>
+                
                 <li id="navClientesLi"><a href="cliente.php"><i class="fa fa-plus-circle"></i> Clientes</a></li>
               </ul>
             </li>';
