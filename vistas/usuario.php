@@ -29,7 +29,7 @@ if ($_SESSION['personal']==1)
        </section>        
         <!-- Main content -->
         <section class="content">
-        <div class="panel panel-default" style="border-color: #666; border-width: 3px; border-style: double;">
+        <div class="panel panel-default" style="border-color: #ff8822; border-width: 3px; border-style: double;">
           <div class="panel-heading">
           <div class="box-header with-border" >
               <h1 class="box-title">Usuarios</h1>
@@ -80,7 +80,7 @@ if ($_SESSION['personal']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#ff8822; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
           Usuarios</h4>

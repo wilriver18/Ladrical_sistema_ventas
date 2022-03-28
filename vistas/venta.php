@@ -22,16 +22,14 @@ if ($_SESSION['ventas']==1)
     <br>
     <ol class="breadcrumb">
       
-      <li><a href="inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar ventas</li>
     
     </ol>
   </section>
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                  <div class="panel panel-default" style="border-color: #666; border-width: 3px; border-style: double;">
+                  <div class="panel panel-default" style="border-color: #ff8822; border-width: 3px; border-style: double;">
 
                 <div class="panel-heading">
                     <div class="box-header with-border" >

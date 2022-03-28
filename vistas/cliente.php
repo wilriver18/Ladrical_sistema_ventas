@@ -19,10 +19,7 @@ if ($_SESSION['ventas']==1)
       <section class="content-header">
       <br>
         <ol class="breadcrumb">
-      
-        <li><a href="inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-        <li class="active">Administrar Clientes</li>
+     
     
         </ol>
        </section>        

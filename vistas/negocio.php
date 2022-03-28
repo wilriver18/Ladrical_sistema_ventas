@@ -32,7 +32,7 @@ if ($_SESSION['configuracion']==1) {
 
         <div class="col-md-12"> 
 
-        <div class="panel panel-default" style="border-color: #666; border-width: 3px; border-style: double;">
+        <div class="panel panel-default" style="border-color: #ff8822; border-width: 3px; border-style: double;">
 
           <div class="panel-heading">
               <div class="box-header with-border" >

@@ -5,39 +5,40 @@ require_once "../modelos/Negocio.php";
   $cnegocio = new Negocio();
   $rsptan = $cnegocio->listar();
   $regn=$rsptan->fetch_object();
-
-  
 ?>
+
+<style>
+   .box{
+    background: rgb(255,136,34);
+background: linear-gradient(0deg, rgba(255,136,34,0) 0%, rgba(255,162,0,0.03328655681022408) 61%, rgba(255,136,34,0.4261904590937937) 100%); 
+   }
+</style>
+
+<style>
+  .texto{
+    color: orangered;
+  }
+</style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">        
         <!-- Main content -->
+        
         <section class="content-header">
           <br>
-          <ol class="breadcrumb">
-            
-           
           
-          </ol>
         </section>
         <section class="content">
             <div class="row">
               <div class="col-md-12">
                   <div class="box">
-                    <div class="box-header with-border">
-                         
-                        <div class="box-tools pull-right">
-                          <button class="btn btn-box-tool" data-widget="collapse">
-                          <i class="fa fa-minus"></i>
-                          </button>
-                          <button class="btn btn-box-tool" data-widget="remove">
-                          <i class="fa fa-times"></i>
-                          </button>
-                        </div>
+                    <div class="box-header ">
+                        
                     </div>
                     <!-- /.box-header -->
                     <!-- centro -->
                     <div class="panel-body">
+                    
 
                       <?php 
 
@@ -56,69 +57,63 @@ require_once "../modelos/Negocio.php";
                           <a href="negocio.php" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                       </div>
-
                       <?php
                       }else{
-
                         $nombrenegocio=$regn->nombre;
                         $smoneda=$regn->simbolo;
                         $logo=$regn->logo;
-
-                      ?>
-
-                    
-
+                      ?>                  
                       <?php
-
                         }
-
                         ?>
 
-                        <div class="row">
+                        <div class="row">         
 
-
-             
-
-                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                        <div class="small-box bg-red">
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <div class="small-box">
                           <div class="inner">
-                            <h4 style="font-size:20px;">
-                              <strong>Datos Menu</strong>
-                            </h4>
-                            <p>MENU 1 </p>
+                            <a href="producto.php"><img src="../files/producto.png" alt=""></a>
+                          
                           </div>
                           <div class="icon">
-                            <i class="fa fa-users"></i>
+                          </div>                         
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <div class="small-box">
+                          <div class="inner">
+                            <a href="venta.php"><img src="../files/venta.png" alt="venta"></a>
+                          
                           </div>
-                          <a href="#" class="small-box-footer">menu 1 <i class="fa fa-arrow-circle-right"></i></a>
+                          <div class="icon">
+                          </div>
+                        </div>
+                      </div>
+                          
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <div class="small-box">
+                          <div class="inner">
+                            <a href="producto.php"><img src="../files/usuario.png" alt=""></a>
+                          </div>
+                          <div class="icon">
+                          </div>
                         </div>
                       </div>
                           
 
-
                         </div>
-
-
-
                         </div>
-
-
-
-
                     <!--Fin centro -->
                   </div><!-- /.box -->
               </div><!-- /.col -->
-
               <!--------------------->
-  
            <div class="row">
            
-
               <!-- DONUT CHART -->
-             
 
             </div><!-- /.col (LEFT) -->
-            
+           
       
 
             </div><!-- /.col (RIGHT) -->

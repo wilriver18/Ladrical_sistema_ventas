@@ -21,6 +21,8 @@ if (strlen(session_id()) < 1)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo $nombrenegocio; ?> | Administrable</title>
+      <!-- Favicons-->
+  <link rel="icon" href="../public/img/logo1.png" sizes="32x32">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -32,7 +34,7 @@ if (strlen(session_id()) < 1)
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
-    <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
+    
 
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">    
@@ -179,7 +181,7 @@ if (strlen(session_id()) < 1)
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="navPersonalLi"><a href="empleado.php"><i class="fa fa-plus-circle"></i> Personal actual</a></li>
+                <li id="navPersonalLi"><a href="empleado.php"><i class="fa fa-plus-circle"></i> Personal</a></li>
                 <li id="navUsuarioLi"><a href="usuario.php"><i class="fa fa-plus-circle"></i> Usuarios</a></li>
                 <li id="navPermisoLi"><a href="permiso.php"><i class="fa fa-plus-circle"></i> Permisos</a></li>
                 
@@ -191,3 +193,9 @@ if (strlen(session_id()) < 1)
         </section>
         <!-- /.sidebar -->
       </aside>
+
+      <style>
+  .panel-default > .panel-heading{
+    background: rgb(255,162,0);
+background: radial-gradient(circle, rgba(255,162,0,0.6194677700181634) 0%, rgba(255,136,34,1) 57%);  }
+</style>

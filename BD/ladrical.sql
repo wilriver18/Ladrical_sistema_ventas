@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2022 a las 02:17:18
+-- Tiempo de generación: 28-03-2022 a las 06:28:52
 -- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Versión de PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,36 @@ CREATE TABLE `categoria` (
   `condicion` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idcategoria`, `nombre`, `condicion`) VALUES
+(1, 'LADRILLO', 1),
+(2, 'CEMENTO', 1),
+(3, 'ESTUCO', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comp_pago`
+--
+
+CREATE TABLE `comp_pago` (
+  `id_comp_pago` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `serie_comprobante` varchar(3) NOT NULL,
+  `num_comprobante` varchar(7) NOT NULL,
+  `condicion` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `comp_pago`
+--
+
+INSERT INTO `comp_pago` (`id_comp_pago`, `nombre`, `serie_comprobante`, `num_comprobante`, `condicion`) VALUES
+(2, 'Boleta', '000', '9999999', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +87,13 @@ CREATE TABLE `datos_negocio` (
   `condicion` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `datos_negocio`
+--
+
+INSERT INTO `datos_negocio` (`id_negocio`, `nombre`, `ndocumento`, `documento`, `direccion`, `telefono`, `email`, `logo`, `pais`, `ciudad`, `nombre_impuesto`, `monto_impuesto`, `moneda`, `simbolo`, `condicion`) VALUES
+(6, 'LADRICAL', 'NIT', 1010101010, 'POTOSI BOLIVIA', 72144532, 'ladrical@hotmail.com', '', 'BOLIVIA', 'POTOSI', 'IVA', 16.00, 'BOLIVIANOS', 'BS/', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +108,17 @@ CREATE TABLE `detalle_venta` (
   `precio_venta` decimal(11,2) NOT NULL,
   `descuento` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idproducto`, `cantidad`, `precio_venta`, `descuento`) VALUES
+(1, 1, 33, 1, '6.00', '0.00'),
+(2, 1, 32, 1, '4.00', '0.00'),
+(3, 2, 34, 1, '5.00', '0.00'),
+(4, 3, 41, 25, '2.00', '0.00'),
+(5, 3, 40, 1, '4.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -126,6 +174,17 @@ CREATE TABLE `persona` (
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `fecha`) VALUES
+(2, 'Cliente', 'Jose', 'NIT', '12345678944', 'LA PAZ', '', 'jose@ho.com', NULL),
+(3, 'Proveedor', 'Maria', 'NIT', '12345678911', 'CBBA', '', 'maria@gmail.com', NULL),
+(4, 'Cliente', 'Veronica', 'NIT', '75662354', 'TARIJA', '', 'veronica@gmail.com', NULL),
+(5, 'Cliente', 'maria', 'DNI', '71883852', 'POTOSI', '', 'prueba@hotmail.com', '0000-00-00'),
+(6, 'Cliente', 'Gregorio', 'CEDULA', '4334626', 'Av Heroinas entre oquendo', '46484987', 'alesn@hotmail.com', '1995-06-22');
+
 -- --------------------------------------------------------
 
 --
@@ -150,9 +209,10 @@ CREATE TABLE `personal` (
 --
 
 INSERT INTO `personal` (`idpersonal`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `imagen`, `condicion`) VALUES
-(1, 'Usuario Administrador', 'DNI', '71883851', 'Guadalupe', '952761400', 'Manuel_13_1998@Hotmail.com', 'Administrador', '1570311068.png', 1),
-(2, 'ROEL CHURATA QUISPE', 'DNI', '2542522', 'kkaka', '855558', 'test1@test1.com', 'Vendedor', '1607292444.png', 1),
-(3, 'PRUEBA', 'DNI', '78996532', 'Calle #12', '952761400', 'manuel_13_1998@hotmail.com', 'Administrador', '1625439652.jpg', 1);
+(1, 'Usuario Administrador', 'DNI', '71883851', 'Guadalupe', '952761400', 'Manuel_13_1998@Hotmail.com', 'Administrador', '1648439985.jpg', 1),
+(2, 'ROEL CHURATA QUISPE', 'DNI', '2542522', 'kkaka', '855558', 'test1@test1.com', 'Vendedor', '1648440006.jpg', 1),
+(3, 'Gregorio', 'CEDULA', '4334626', 'Av Final Panamericana', '46484987', 'Gregorio@hotmail.com', 'Administrador', '1648440129.jpg', 1),
+(4, 'Julia', 'CEDULA', '43464889', 'Av los Angeles', '46484987', 'julia@hotmail.com', 'Gerente', '1648440195.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -180,24 +240,12 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idproducto`, `idcategoria`, `codigo`, `nombre`, `stock`, `precio`, `fecha`, `descripcion`, `imagen`, `condicion`, `modelo`, `numserie`) VALUES
-(13, 1, 'DFDF', 'SAMSUMG GALAXY A72', 0, '1800.00', '2021-06-08', 'SAMSUMG', '1624656994.jpg', 1, NULL, NULL),
-(14, 1, 'IICG', 'CURSO DE PRUEBA 2', 11, '500.00', '2021-06-10', 'CURSO 2', '1623459324.jpg', 1, NULL, NULL),
-(15, 4, 'IICG', 'BAKHOU BOXER', 9, '520.00', '2021-06-25', 'M', '1624657051.jpg', 1, NULL, NULL),
-(16, 1, 'NEZY', 'PRODUCTO', 6, '200.00', '2021-06-25', 'M', 'anonymous.png', 1, NULL, NULL),
-(17, 1, '25554', 'Coca Cola', 195, '200.00', '2021-06-11', 'xd', 'anonymous.png', 1, NULL, NULL),
-(18, 1, 'DDSDS', 'COCA SD', 198, '200.00', '2021-06-30', 'XD', 'anonymous.png', 1, NULL, NULL),
-(19, 1, 'IICG', 'Coca Cola', 10, '100.00', '2021-07-02', 'M', 'anonymous.png', 1, NULL, NULL),
-(20, 1, 'ed', 'fg', 400, '100.00', '2021-07-08', 'monto de inicio de caja', 'anonymous.png', 1, NULL, NULL),
-(21, 1, 'sdsdd', 'BAKHOU BOXER', 100, '80.00', '2021-06-11', 'ss', 'anonymous.png', 1, NULL, NULL),
-(22, 1, 'fggf', 'Manuel', 9, '1.00', '2021-06-11', 'kj', '1623461526.jpg', 1, NULL, NULL),
-(23, 1, 'f', 'no se gurda la imagen', 10, '100000.00', '0000-00-00', 'sdd', '1623461744.jpg', 1, NULL, NULL),
-(24, 1, 'ghghgh', 'esta si', 10, '40.00', '0000-00-00', 'monto de inicio de caja', 'anonymous.png', 1, NULL, NULL),
-(25, 1, '2442', 'pruebaaaa', 72, '25.00', '2021-05-15', 'dfdfdf\r\n', 'anonymous.png', 1, NULL, NULL),
-(26, 1, 'ASDSD', 'PROBANDO LA IMG', 200, '100.00', '2021-06-11', 'PROBANDO', 'anonymous.png', 1, NULL, NULL),
-(27, 1, 'SDASAS', 'PRUEBA IMG', 20, '5.00', '2021-06-11', 'XDD', '1623464750.jpeg', 1, NULL, NULL),
-(28, 1, 'HHJ', 'ererrtt', 11, '10.00', '2021-06-11', 'HGH', 'anonymous.png', 1, NULL, NULL),
-(29, 1, 'GHGH', 'FULL SMARTV HD', 10, '1200.00', '2021-06-11', 'LG', '1624656608.jpg', 1, 'm', 's'),
-(30, 1, '', 'CURSO DE PRUEBA 24444', 5, '85.00', '2021-07-04', 'M', '1625413837.png', 1, 'modelo', 'serie');
+(37, 1, '', 'Ladrillo 6 huecos', 9009, '2.00', '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648440702.jpg', 1, 'Indeca', ''),
+(38, 1, '', 'Ladrillo de estilo rústico', 545, '5.00', '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648440736.png', 1, 'Indeca', ''),
+(39, 1, '', 'Ladrillo decorativo', 5666, '3.00', '0000-00-00', '', '1648440761.jpg', 1, 'Indeca', ''),
+(40, 1, '', 'Ladrillo de estilo rústico', 6554, '4.00', '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648440791.jpg', 1, 'Indeca', ''),
+(41, 1, '', 'ladrillo pequeño', 465, '2.00', '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648440828.png', 1, 'Indeca', ''),
+(42, 1, '', 'Ladrillo 6 huecos', 5455, '4.00', '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648440860.jpg', 1, 'Indeca', '');
 
 -- --------------------------------------------------------
 
@@ -219,8 +267,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `idpersonal`, `login`, `clave`, `condicion`) VALUES
 (1, 1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
-(4, 2, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 1),
-(19, 3, 'AD', 'c7bf4bbdbcd88d9d7f7c7b299c94e9e52091af2fd2888ecf85a9d6a4160b4184', 1);
+(4, 2, 'wilmer', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+(19, 3, 'prueba', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+(21, 6, 'gregory', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1);
 
 -- --------------------------------------------------------
 
@@ -246,25 +295,7 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (12, 1, 5),
 (13, 1, 5),
 (14, 1, 6),
-(15, 1, 7),
-(20, 4, 4),
-(21, 1, 8),
-(30, 5, 1),
-(31, 5, 2),
-(32, 5, 3),
-(33, 5, 4),
-(34, 5, 5),
-(35, 5, 6),
-(36, 5, 7),
-(37, 5, 8),
-(49, 19, 1),
-(50, 19, 2),
-(51, 19, 3),
-(52, 19, 4),
-(53, 19, 5),
-(54, 19, 6),
-(55, 19, 7),
-(56, 19, 8);
+(15, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -298,43 +329,9 @@ CREATE TABLE `venta` (
 --
 
 INSERT INTO `venta` (`idventa`, `idcliente`, `idPersonal`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_venta`, `ventacredito`, `formapago`, `numoperacion`, `fechadeposito`, `descuento`, `totalrecibido`, `vuelto`, `estado`, `DOV_Nombre`) VALUES
-(47, 2, 1, 'Boleta', '001', '0000001', '2021-06-17 00:00:00', '18.00', '1400.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(48, 4, 1, 'Boleta', '001', '0000002', '2021-04-01 00:00:00', '18.00', '39.20', 'Si', 'Transferencia', '', '0000-00-00 00:00:00', 2, 100, 60.8, 'Aceptado', NULL),
-(49, 2, 1, 'Boleta', '001', '0000003', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(50, 2, 1, 'Boleta', '001', '0000004', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 500, 'Aceptado', NULL),
-(51, 4, 1, 'Boleta', '001', '0000005', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(52, 2, 1, 'Boleta', '001', '0000006', '2021-06-17 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(53, 2, 1, 'Boleta', '001', '0000007', '2021-06-18 00:00:00', '18.00', '505.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(54, 4, 1, 'Boleta', '001', '0000008', '2021-05-01 00:00:00', '18.00', '25.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 25, 'Aceptado', NULL),
-(55, 4, 1, 'Boleta', '001', '0000009', '2021-06-19 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(56, 2, 1, 'Factura', '001', '0000001', '2021-06-19 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(57, 4, 1, 'Nota', '001', '0000001', '2021-06-19 00:00:00', '0.00', '1000.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(58, 2, 1, 'Boleta', '001', '0000010', '2021-06-20 00:00:00', '18.00', '1000.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(59, 2, 1, 'Boleta', '001', '0000011', '2021-06-21 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(60, 2, 1, 'Boleta', '001', '0000012', '2021-06-21 00:00:00', '18.00', '180.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 10, 0, 0, 'Aceptado', NULL),
-(61, 2, 1, 'Boleta', '001', '0000013', '2021-06-22 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(62, 2, 1, 'Boleta', '001', '0000014', '2021-06-23 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(64, 2, 1, 'Boleta', '001', '0000015', '2021-06-25 00:00:00', '18.00', '25.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(65, 2, 1, 'Boleta', '001', '0000016', '2021-06-25 00:00:00', '18.00', '200.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(66, 4, 1, 'Boleta', '001', '0000017', '2021-06-25 00:00:00', '18.00', '25.00', 'No', 'Transferencia', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(67, 2, 1, 'Boleta', '001', '0000018', '2021-06-25 00:00:00', '18.00', '4100.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 5000, 900, 'Aceptado', NULL),
-(68, 2, 1, 'Boleta', '001', '0000019', '2021-06-29 00:00:00', '18.00', '825.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 175, 'Aceptado', NULL),
-(69, 2, 1, 'Boleta', '001', '0000020', '2021-07-01 00:00:00', '18.00', '500.00', 'No', 'Tarjeta', '0221212458454', '2021-07-01 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(70, 2, 2, 'Boleta', '001', '0000021', '2021-07-04 00:00:00', '18.00', '25.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(71, 2, 1, 'Boleta', '001', '0000022', '2021-07-04 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(72, 2, 1, 'Boleta', '001', '0000023', '2021-03-01 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(73, 2, 1, 'Boleta', '001', '0000024', '2021-07-08 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(74, 2, 1, 'Boleta', '001', '0000025', '2021-07-10 00:00:00', '18.00', '500.00', 'Si', 'Tarjeta', '11212', '2021-07-10 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(75, 2, 1, 'Boleta', '001', '0000026', '2021-07-11 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Anulado', NULL),
-(76, 2, 1, 'Boleta', '001', '0000027', '2021-07-11 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Anulado', NULL),
-(77, 4, 1, 'Boleta', '001', '0000028', '2021-07-12 00:00:00', '18.00', '200.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(78, 2, 1, 'Boleta', '001', '0000029', '2022-03-26 00:00:00', '18.00', '720.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 280, 'Aceptado', NULL),
-(79, 4, 1, 'Boleta', '001', '0000030', '2022-03-27 00:00:00', '18.00', '400.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 500, 100, 'Aceptado', NULL),
-(80, 2, 1, 'Boleta', '001', '0000031', '2022-03-27 00:00:00', '18.00', '400.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 600, 'Aceptado', NULL),
-(81, 4, 1, 'Boleta', '001', '0000032', '2022-03-27 00:00:00', '18.00', '10.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 40, 'Aceptado', NULL),
-(82, 2, 1, 'Boleta', '001', '0000033', '2022-03-27 00:00:00', '18.00', '30.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 20, 'Aceptado', NULL),
-(83, 5, 1, 'Boleta', '001', '0000034', '2022-03-27 00:00:00', '18.00', '40.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 100, 60, 'Aceptado', NULL),
-(84, 4, 1, 'Boleta', '001', '0000035', '2022-03-27 00:00:00', '18.00', '10.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 40, 'Aceptado', NULL);
+(1, 2, 1, 'Boleta', '001', '0000001', '2022-03-27 00:00:00', '16.00', '10.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 20, 10, 'Aceptado', NULL),
+(2, 4, 1, 'Boleta', '001', '0000002', '2022-03-27 00:00:00', '16.00', '5.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
+(3, 6, 1, 'Boleta', '001', '0000003', '2022-03-27 00:00:00', '16.00', '54.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -424,19 +421,19 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_negocio`
 --
 ALTER TABLE `datos_negocio`
-  MODIFY `id_negocio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_negocio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `movimiento`
@@ -454,25 +451,25 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `idpersonal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idpersonal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
@@ -484,7 +481,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

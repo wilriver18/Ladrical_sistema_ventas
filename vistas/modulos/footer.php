@@ -1,3 +1,9 @@
+    
+      <style>
+      .main-footer{
+        background: rgb(238,174,174);
+background: radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,136,34,1) 100%); }
+   </style>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0
