@@ -31,14 +31,14 @@ if ($_SESSION['almacen']==1)
           <div class="panel-heading">
             <div class="box-header with-border" >
                 <h1 class="box-title">Productos</h1>
-                <div class="box-tools pull-right">
+                <!--<div class="box-tools pull-right">
                   <button class="btn btn-box-tool" data-widget="collapse">
                   <i class="fa fa-minus"></i>
                   </button>
                   <button class="btn btn-box-tool" data-widget="remove">
                   <i class="fa fa-times"></i>
                   </button>
-                </div>
+                </div>-->
 
             </div>
           </div>

@@ -32,8 +32,16 @@ background: linear-gradient(0deg, rgba(255,136,34,0) 0%, rgba(255,162,0,0.033286
             <div class="row">
               <div class="col-md-12">
                   <div class="box">
-                    <div class="box-header ">
-                        
+                    <div class="box-header with-border">
+                         
+                        <!--<div class="box-tools pull-right">
+                          <button class="btn btn-box-tool" data-widget="collapse">
+                          <i class="fa fa-minus"></i>
+                          </button>
+                          <button class="btn btn-box-tool" data-widget="remove">
+                          <i class="fa fa-times"></i>
+                          </button>
+                        </div>-->
                     </div>
                     <!-- /.box-header -->
                     <!-- centro -->

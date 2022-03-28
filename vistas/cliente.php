@@ -29,14 +29,14 @@ if ($_SESSION['ventas']==1)
           <div class="panel-heading">
           <div class="box-header with-border" >
               <h1 class="box-title">Clientes</h1>
-              <div class="box-tools pull-right">
+              <!--<div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
                 </button>
                 <button class="btn btn-box-tool" data-widget="remove">
                 <i class="fa fa-times"></i>
                 </button>
-              </div>
+              </div>-->
 
           </div>
         </div>
@@ -102,9 +102,9 @@ if ($_SESSION['ventas']==1)
             <label for="name" class="col-sm-2 control-label">Tipo Documento: </label>
             <div class="col-sm-4"> 
               <select class="form-control select-picker" name="tipo_documento" id="tipo_documento" required>
-              <option value="DNI">DNI</option>
-              <option value="RUC">RUC</option>
-              <option value="CEDULA">CEDULA</option>
+           
+                           <option value="CEDULA">CI</option>
+                           <option value="PASAPORTE">PASAPORTE</option>
               </select>
             </div>
           </div>
