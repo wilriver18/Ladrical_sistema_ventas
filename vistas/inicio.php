@@ -32,7 +32,7 @@ background: linear-gradient(0deg, rgba(255,136,34,0) 0%, rgba(255,162,0,0.033286
             <div class="row">
               <div class="col-md-12">
                   <div class="box">
-                    <div class="box-header with-border">
+                    <div class="box-header">
                          
                         <!--<div class="box-tools pull-right">
                           <button class="btn btn-box-tool" data-widget="collapse">
@@ -91,7 +91,7 @@ background: linear-gradient(0deg, rgba(255,136,34,0) 0%, rgba(255,162,0,0.033286
                       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                         <div class="small-box">
                           <div class="inner">
-                            <a href="venta.php"><img src="../files/venta.png" alt="venta"></a>
+                            <a href="cliente.php"><img src="../files/venta.png" alt="venta"></a>
                           
                           </div>
                           <div class="icon">
