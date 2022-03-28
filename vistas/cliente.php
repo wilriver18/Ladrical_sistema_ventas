@@ -104,7 +104,7 @@ if ($_SESSION['ventas']==1)
               <select class="form-control select-picker" name="tipo_documento" id="tipo_documento" required>
            
                            <option value="CEDULA">CI</option>
-                           <option value="PASAPORTE">PASAPORTE</option>
+                           <option value="NIT">NIT</option>
               </select>
             </div>
           </div>
