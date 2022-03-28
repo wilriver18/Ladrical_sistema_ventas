@@ -56,7 +56,7 @@ if (strlen(session_id()) < 1)
         <!-- Logo -->
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>TN</b></span>
+          <span class="logo-mini"><b>LA</b></span>
           <b>"LADRICAL"</b>
           <!-- logo for regular state and mobile devices -->
           <!-- <img src="../files/AgroNegocios.png"> -->
