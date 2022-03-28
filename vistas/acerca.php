@@ -13,7 +13,10 @@ require_once "../modelos/Consultas.php";
         <section class="content-header">
           <br>
           <ol class="breadcrumb">
-           
+            
+            <li><a href="inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            
+            <li class="active">Panel de control</li>
           
           </ol>
         </section>

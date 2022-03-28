@@ -1,4 +1,5 @@
 var tabla;
+
 //Función que se ejecuta al inicio
 function init(){
 	mostrarform(false);
@@ -12,17 +13,19 @@ function init(){
 	{
 		guardaryeditar(e);	
 	})
-	
+
 	//Cargamos los items al select categoria
 	$.post("../controladores/producto.php?op=selectCategoria", function(r){
 	            $("#idcategoria").html(r);
 	            $('#idcategoria').selectpicker('refresh');
 
 	});
+
 	$('#navAlmacen').addClass("treeview active");
     $('#navProducto').addClass("active");
- 
+    
 }
+
 //Función limpiar
 function limpiar()
 {
@@ -40,6 +43,7 @@ function limpiar()
 	$("#modelo").val("");
 	$("#nserie").val("");
 }
+
 //Función mostrar formulario
 function mostrarform(flag)
 {
@@ -152,6 +156,7 @@ function mostrar(idproducto)
 
  	})
 }
+
 //Función para desactivar registros
 function desactivar(idproducto)
 {
@@ -179,6 +184,7 @@ function desactivar(idproducto)
 							 }
 							});
 }
+
 //Función para activar registros
 function activar(idproducto)
 {
@@ -205,6 +211,7 @@ function activar(idproducto)
 			 }
 			});
 }
+
 /*=============================================
 SUBIENDO LA FOTO DEL PRODUCTO
 =============================================*/
@@ -254,4 +261,19 @@ $("#imagen").change(function(){
 
     }
 })
+
+//función para generar el código de barras
+function generarbarcode()
+{
+	codigo=$("#codigo").val();
+	JsBarcode("#barcode", codigo);
+	$("#print").show();
+}
+
+//Función para imprimir el Código de barras
+function imprimir()
+{
+	$("#print").printArea();
+}
+
 init();

@@ -33,16 +33,14 @@ if ($_SESSION['personal']==1)
           <div class="panel-heading">
           <div class="box-header with-border" >
               <h1 class="box-title">Personal</h1>
-
-              <!--esta opcion inabihita las opciones de minimizar y de la x de salir en la pantalla principal-->
-              <!-- <div class="box-tools pull-right">
+              <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
                 </button>
                 <button class="btn btn-box-tool" data-widget="remove">
                 <i class="fa fa-times"></i>
                 </button>
-              </div> -->
+              </div>
 
           </div>
         </div>
@@ -91,7 +89,7 @@ if ($_SESSION['personal']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:#F7B035; color:white">
+        <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
           Personal</h4>
@@ -113,12 +111,14 @@ if ($_SESSION['personal']==1)
             <label for="name" class="col-sm-2 control-label">Tipo Documento: </label>
             <div class="col-sm-4"> 
               <select class="form-control select-picker" name="tipo_documento" id="tipo_documento" required>
-              <option value="CI">CI</option>
+              <option value="DNI">DNI</option>
+              <option value="RUC">RUC</option>
+              <option value="CEDULA">CEDULA</option>
             </select>
             </div>
 
 
-            <label for="name" class="col-sm-2 control-label">Número de identidad:</label>
+            <label for="name" class="col-sm-2 control-label">Número:</label>
             <div class="col-sm-4">
               <input type="text" class="form-control" name="num_documento" id="num_documento" maxlength="20" placeholder="Documento" required>
             </div>

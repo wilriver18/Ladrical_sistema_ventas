@@ -149,7 +149,7 @@ function desactivar(idpersonal)
 						    type: "warning",
 						    showCancelButton: true,
 								cancelButtonText: "No",
-								cancelButtonColor: '#F99514',
+								cancelButtonColor: '#FF0000',
 						    confirmButtonText: "Si",
 						    confirmButtonColor: "#0004FA",
 						    closeOnConfirm: false,
@@ -186,7 +186,7 @@ function activar(idpersonal)
 		    },function(isConfirm){
 		    if (isConfirm){
 						$.post("../controladores/empleado.php?op=activar", {idpersonal : idpersonal}, function(e){
-						swal("!!! Activada !!!", e ,"success");
+						swal("!!! Activarda !!!", e ,"success");
 								tabla.ajax.reload();
 						});
 		    }else {

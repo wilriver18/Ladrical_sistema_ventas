@@ -79,7 +79,7 @@ if ($_SESSION['almacen']==1)
       <!-- form -->
       <form class="form-horizontal" role="form" name="formulario" id="formulario" method="POST">
 
-        <div class="modal-header" style="background:orange; color:white">
+        <div class="modal-header" style="background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
           Categorías</h4>
