@@ -105,9 +105,9 @@ if ($_SESSION['ventas']==1)
             <label for="name" class="col-sm-2 control-label">Tipo Documento: </label>
             <div class="col-sm-4"> 
               <select class="form-control select-picker" name="tipo_documento" id="tipo_documento" required>
-              <option value="DNI">DNI</option>
-              <option value="RUC">RUC</option>
               <option value="CEDULA">CEDULA</option>
+              <option value="PASAPORTE">PASAPORTE</option>
+              
               </select>
             </div>
           </div>
