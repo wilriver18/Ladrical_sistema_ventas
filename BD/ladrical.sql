@@ -1,46 +1,57 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2022 a las 02:17:18
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         10.4.22-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             11.3.0.6295
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Base de datos: `ladrical`
---
 
--- --------------------------------------------------------
+-- Volcando estructura de base de datos para ladrical
+CREATE DATABASE IF NOT EXISTS `ladrical` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `ladrical`;
 
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `idcategoria` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.categoria
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `condicion` tinyint(1) NOT NULL DEFAULT 1
+  `condicion` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idcategoria`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla ladrical.categoria: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` (`idcategoria`, `nombre`, `condicion`) VALUES
+	(1, 'LADRILLO', 1),
+	(2, 'CEMENTO', 1),
+	(3, 'ESTUCO', 1);
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+
+-- Volcando estructura para tabla ladrical.comp_pago
+CREATE TABLE IF NOT EXISTS `comp_pago` (
+  `id_comp_pago` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `serie_comprobante` varchar(3) NOT NULL,
+  `num_comprobante` varchar(7) NOT NULL,
+  `condicion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla ladrical.comp_pago: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `comp_pago` DISABLE KEYS */;
+INSERT INTO `comp_pago` (`id_comp_pago`, `nombre`, `serie_comprobante`, `num_comprobante`, `condicion`) VALUES
+	(2, 'Boleta', '000', '9999999', 1);
+/*!40000 ALTER TABLE `comp_pago` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `datos_negocio`
---
-
-CREATE TABLE `datos_negocio` (
-  `id_negocio` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.datos_negocio
+CREATE TABLE IF NOT EXISTS `datos_negocio` (
+  `id_negocio` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
   `ndocumento` varchar(20) NOT NULL,
   `documento` int(11) NOT NULL,
@@ -54,68 +65,70 @@ CREATE TABLE `datos_negocio` (
   `monto_impuesto` float(4,2) NOT NULL,
   `moneda` varchar(10) NOT NULL,
   `simbolo` varchar(10) NOT NULL,
-  `condicion` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `condicion` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_negocio`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla ladrical.datos_negocio: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `datos_negocio` DISABLE KEYS */;
+INSERT INTO `datos_negocio` (`id_negocio`, `nombre`, `ndocumento`, `documento`, `direccion`, `telefono`, `email`, `logo`, `pais`, `ciudad`, `nombre_impuesto`, `monto_impuesto`, `moneda`, `simbolo`, `condicion`) VALUES
+	(6, 'LADRICAL', 'NIT', 1010101010, 'POTOSI BOLIVIA', 72144532, 'ladrical@hotmail.com', '', 'BOLIVIA', 'POTOSI', 'IVA', 16.00, 'BOLIVIANOS', 'BS/', 1);
+/*!40000 ALTER TABLE `datos_negocio` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `detalle_venta`
---
-
-CREATE TABLE `detalle_venta` (
-  `iddetalle_venta` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.detalle_venta
+CREATE TABLE IF NOT EXISTS `detalle_venta` (
+  `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT,
   `idventa` int(11) NOT NULL,
   `idproducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio_venta` decimal(11,2) NOT NULL,
-  `descuento` decimal(11,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `descuento` decimal(11,2) NOT NULL,
+  PRIMARY KEY (`iddetalle_venta`),
+  KEY `fk_detalle_venta_venta_idx` (`idventa`),
+  KEY `fk_detalle_venta_producto1_idx` (`idproducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla ladrical.detalle_venta: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
+INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idproducto`, `cantidad`, `precio_venta`, `descuento`) VALUES
+	(1, 1, 33, 1, 6.00, 0.00),
+	(2, 1, 32, 1, 4.00, 0.00);
+/*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `movimiento`
---
-
-CREATE TABLE `movimiento` (
-  `idmovimiento` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.movimiento
+CREATE TABLE IF NOT EXISTS `movimiento` (
+  `idmovimiento` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL DEFAULT current_timestamp(),
   `tipo` varchar(25) NOT NULL,
   `vendedor` varchar(255) NOT NULL,
   `monto` decimal(11,2) NOT NULL,
-  `descripcion` text NOT NULL
+  `descripcion` text NOT NULL,
+  PRIMARY KEY (`idmovimiento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla ladrical.movimiento: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `movimiento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movimiento` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `permiso`
---
+-- Volcando estructura para tabla ladrical.permiso
+CREATE TABLE IF NOT EXISTS `permiso` (
+  `idpermiso` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  PRIMARY KEY (`idpermiso`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `permiso` (
-  `idpermiso` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `permiso`
---
-
+-- Volcando datos para la tabla ladrical.permiso: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
 INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
-(1, 'Inicio'),
-(2, 'Almacen'),
-(3, 'Ventas'),
-(4, 'Personal');
+	(1, 'Inicio'),
+	(2, 'Almacen'),
+	(3, 'Ventas'),
+	(4, 'Personal');
+/*!40000 ALTER TABLE `permiso` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `persona`
---
-
-CREATE TABLE `persona` (
-  `idpersona` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.persona
+CREATE TABLE IF NOT EXISTS `persona` (
+  `idpersona` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_persona` varchar(20) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `tipo_documento` varchar(20) DEFAULT NULL,
@@ -123,17 +136,23 @@ CREATE TABLE `persona` (
   `direccion` varchar(70) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `fecha` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`idpersona`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla ladrical.persona: ~5 rows (aproximadamente)
+/*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `fecha`) VALUES
+	(2, 'Cliente', 'Jose', 'NIT', '12345678944', 'LA PAZ', '', 'jose@ho.com', NULL),
+	(3, 'Proveedor', 'Maria', 'NIT', '12345678911', 'CBBA', '', 'maria@gmail.com', NULL),
+	(4, 'Cliente', 'Veronica', 'NIT', '75662354', 'TARIJA', '', 'veronica@gmail.com', NULL),
+	(5, 'Cliente', 'prueba', 'NIT', '71883852', 'POTOSI', '', 'prueba@hotmail.com', '0000-00-00'),
+	(6, 'Cliente', 'Gregorio', 'CEDULA', '4334626', 'Av Heroinas entre oquendo', '46484987', 'alesn@hotmail.com', '1995-06-22');
+/*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `personal`
---
-
-CREATE TABLE `personal` (
-  `idpersonal` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.personal
+CREATE TABLE IF NOT EXISTS `personal` (
+  `idpersonal` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `tipo_documento` varchar(20) NOT NULL,
   `num_documento` varchar(20) NOT NULL,
@@ -142,26 +161,21 @@ CREATE TABLE `personal` (
   `email` varchar(50) DEFAULT NULL,
   `cargo` varchar(20) DEFAULT NULL,
   `imagen` varchar(50) DEFAULT NULL,
-  `condicion` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `condicion` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idpersonal`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `personal`
---
-
+-- Volcando datos para la tabla ladrical.personal: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `personal` DISABLE KEYS */;
 INSERT INTO `personal` (`idpersonal`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `imagen`, `condicion`) VALUES
-(1, 'Usuario Administrador', 'DNI', '71883851', 'Guadalupe', '952761400', 'Manuel_13_1998@Hotmail.com', 'Administrador', '1570311068.png', 1),
-(2, 'ROEL CHURATA QUISPE', 'DNI', '2542522', 'kkaka', '855558', 'test1@test1.com', 'Vendedor', '1607292444.png', 1),
-(3, 'PRUEBA', 'DNI', '78996532', 'Calle #12', '952761400', 'manuel_13_1998@hotmail.com', 'Administrador', '1625439652.jpg', 1);
+	(1, 'Usuario Administrador', 'DNI', '71883851', 'Guadalupe', '952761400', 'Manuel_13_1998@Hotmail.com', 'Administrador', '1570311068.png', 1),
+	(2, 'ROEL CHURATA QUISPE', 'DNI', '2542522', 'kkaka', '855558', 'test1@test1.com', 'Vendedor', '1607292444.png', 1),
+	(3, 'PRUEBA', 'DNI', '78996532', 'Calle #12', '952761400', 'manuel_13_1998@hotmail.com', 'Administrador', '1625439652.jpg', 1);
+/*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `producto`
---
-
-CREATE TABLE `producto` (
-  `idproducto` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.producto
+CREATE TABLE IF NOT EXISTS `producto` (
+  `idproducto` int(11) NOT NULL AUTO_INCREMENT,
   `idcategoria` int(11) NOT NULL,
   `codigo` varchar(50) DEFAULT NULL,
   `nombre` varchar(250) NOT NULL,
@@ -172,108 +186,69 @@ CREATE TABLE `producto` (
   `imagen` varchar(50) NOT NULL DEFAULT 'anonymous.png',
   `condicion` tinyint(1) NOT NULL DEFAULT 1,
   `modelo` varchar(100) DEFAULT NULL,
-  `numserie` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `numserie` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idproducto`),
+  KEY `fk_producto_categoria1_idx` (`idcategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `producto`
---
-
+-- Volcando datos para la tabla ladrical.producto: ~6 rows (aproximadamente)
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
 INSERT INTO `producto` (`idproducto`, `idcategoria`, `codigo`, `nombre`, `stock`, `precio`, `fecha`, `descripcion`, `imagen`, `condicion`, `modelo`, `numserie`) VALUES
-(13, 1, 'DFDF', 'SAMSUMG GALAXY A72', 0, '1800.00', '2021-06-08', 'SAMSUMG', '1624656994.jpg', 1, NULL, NULL),
-(14, 1, 'IICG', 'CURSO DE PRUEBA 2', 11, '500.00', '2021-06-10', 'CURSO 2', '1623459324.jpg', 1, NULL, NULL),
-(15, 4, 'IICG', 'BAKHOU BOXER', 9, '520.00', '2021-06-25', 'M', '1624657051.jpg', 1, NULL, NULL),
-(16, 1, 'NEZY', 'PRODUCTO', 6, '200.00', '2021-06-25', 'M', 'anonymous.png', 1, NULL, NULL),
-(17, 1, '25554', 'Coca Cola', 195, '200.00', '2021-06-11', 'xd', 'anonymous.png', 1, NULL, NULL),
-(18, 1, 'DDSDS', 'COCA SD', 198, '200.00', '2021-06-30', 'XD', 'anonymous.png', 1, NULL, NULL),
-(19, 1, 'IICG', 'Coca Cola', 10, '100.00', '2021-07-02', 'M', 'anonymous.png', 1, NULL, NULL),
-(20, 1, 'ed', 'fg', 400, '100.00', '2021-07-08', 'monto de inicio de caja', 'anonymous.png', 1, NULL, NULL),
-(21, 1, 'sdsdd', 'BAKHOU BOXER', 100, '80.00', '2021-06-11', 'ss', 'anonymous.png', 1, NULL, NULL),
-(22, 1, 'fggf', 'Manuel', 9, '1.00', '2021-06-11', 'kj', '1623461526.jpg', 1, NULL, NULL),
-(23, 1, 'f', 'no se gurda la imagen', 10, '100000.00', '0000-00-00', 'sdd', '1623461744.jpg', 1, NULL, NULL),
-(24, 1, 'ghghgh', 'esta si', 10, '40.00', '0000-00-00', 'monto de inicio de caja', 'anonymous.png', 1, NULL, NULL),
-(25, 1, '2442', 'pruebaaaa', 72, '25.00', '2021-05-15', 'dfdfdf\r\n', 'anonymous.png', 1, NULL, NULL),
-(26, 1, 'ASDSD', 'PROBANDO LA IMG', 200, '100.00', '2021-06-11', 'PROBANDO', 'anonymous.png', 1, NULL, NULL),
-(27, 1, 'SDASAS', 'PRUEBA IMG', 20, '5.00', '2021-06-11', 'XDD', '1623464750.jpeg', 1, NULL, NULL),
-(28, 1, 'HHJ', 'ererrtt', 11, '10.00', '2021-06-11', 'HGH', 'anonymous.png', 1, NULL, NULL),
-(29, 1, 'GHGH', 'FULL SMARTV HD', 10, '1200.00', '2021-06-11', 'LG', '1624656608.jpg', 1, 'm', 's'),
-(30, 1, '', 'CURSO DE PRUEBA 24444', 5, '85.00', '2021-07-04', 'M', '1625413837.png', 1, 'modelo', 'serie');
+	(31, 1, '', 'Ladrillo 6 huecos', 632, 3.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243604.jpg', 1, 'Indeca', ''),
+	(32, 1, '', '6 hueco mitad', 200, 4.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243432.png', 1, 'Indeca', ''),
+	(33, 1, '', 'Gambote', 1000, 6.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243485.jpg', 1, 'Indeca', ''),
+	(34, 1, '', 'Ladrillo Visto 16 huecos', 6512, 5.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243576.png', 1, 'Indeca', ''),
+	(35, 1, '', 'Ladrillo decorativo', 6552, 2.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243656.jpg', 1, 'Indeca', ''),
+	(36, 1, '', 'Ladrillo de estilo rústico', 5656, 3.00, '0000-00-00', 'Un ladrillo es un material de construcción, normalmente cerámico y con forma ortoédrica, cuyas dimensiones más normales permiten que un operario lo pueda colocar con una sola mano.', '1648243706.png', 1, 'Indeca', '');
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.usuario
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `idpersonal` int(11) NOT NULL,
   `login` varchar(20) NOT NULL,
   `clave` varchar(64) NOT NULL,
-  `condicion` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `condicion` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idusuario`),
+  UNIQUE KEY `login_UNIQUE` (`login`),
+  KEY `fk_usuario_personal1_idx` (`idpersonal`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `usuario`
---
-
+-- Volcando datos para la tabla ladrical.usuario: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`idusuario`, `idpersonal`, `login`, `clave`, `condicion`) VALUES
-(1, 1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
-(4, 2, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 1),
-(19, 3, 'AD', 'c7bf4bbdbcd88d9d7f7c7b299c94e9e52091af2fd2888ecf85a9d6a4160b4184', 1);
+	(1, 1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+	(4, 2, 'wilmer', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+	(19, 3, 'prueba', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+	(21, 6, 'gregory', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario_permiso`
---
-
-CREATE TABLE `usuario_permiso` (
-  `idusuario_permiso` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.usuario_permiso
+CREATE TABLE IF NOT EXISTS `usuario_permiso` (
+  `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT,
   `idusuario` int(11) NOT NULL,
-  `idpermiso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idpermiso` int(11) NOT NULL,
+  PRIMARY KEY (`idusuario_permiso`),
+  KEY `fk_usuario_permiso_permiso_idx` (`idpermiso`),
+  KEY `fk_usuario_permiso_usuario_idx` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `usuario_permiso`
---
-
+-- Volcando datos para la tabla ladrical.usuario_permiso: ~8 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuario_permiso` DISABLE KEYS */;
 INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VALUES
-(8, 1, 1),
-(9, 1, 2),
-(10, 1, 3),
-(11, 1, 4),
-(12, 1, 5),
-(13, 1, 5),
-(14, 1, 6),
-(15, 1, 7),
-(20, 4, 4),
-(21, 1, 8),
-(30, 5, 1),
-(31, 5, 2),
-(32, 5, 3),
-(33, 5, 4),
-(34, 5, 5),
-(35, 5, 6),
-(36, 5, 7),
-(37, 5, 8),
-(49, 19, 1),
-(50, 19, 2),
-(51, 19, 3),
-(52, 19, 4),
-(53, 19, 5),
-(54, 19, 6),
-(55, 19, 7),
-(56, 19, 8);
+	(8, 1, 1),
+	(9, 1, 2),
+	(10, 1, 3),
+	(11, 1, 4),
+	(12, 1, 5),
+	(13, 1, 5),
+	(14, 1, 6),
+	(15, 1, 7);
+/*!40000 ALTER TABLE `usuario_permiso` ENABLE KEYS */;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta`
---
-
-CREATE TABLE `venta` (
-  `idventa` int(11) NOT NULL,
+-- Volcando estructura para tabla ladrical.venta
+CREATE TABLE IF NOT EXISTS `venta` (
+  `idventa` int(11) NOT NULL AUTO_INCREMENT,
   `idcliente` int(11) NOT NULL,
   `idPersonal` int(11) NOT NULL,
   `tipo_comprobante` varchar(20) NOT NULL,
@@ -290,203 +265,19 @@ CREATE TABLE `venta` (
   `totalrecibido` double DEFAULT NULL,
   `vuelto` double DEFAULT NULL,
   `estado` varchar(20) NOT NULL,
-  `DOV_Nombre` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `DOV_Nombre` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idventa`),
+  KEY `fk_venta_persona_idx` (`idcliente`),
+  KEY `fk_venta_Personal1_idx` (`idPersonal`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `venta`
---
-
+-- Volcando datos para la tabla ladrical.venta: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
 INSERT INTO `venta` (`idventa`, `idcliente`, `idPersonal`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_venta`, `ventacredito`, `formapago`, `numoperacion`, `fechadeposito`, `descuento`, `totalrecibido`, `vuelto`, `estado`, `DOV_Nombre`) VALUES
-(47, 2, 1, 'Boleta', '001', '0000001', '2021-06-17 00:00:00', '18.00', '1400.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(48, 4, 1, 'Boleta', '001', '0000002', '2021-04-01 00:00:00', '18.00', '39.20', 'Si', 'Transferencia', '', '0000-00-00 00:00:00', 2, 100, 60.8, 'Aceptado', NULL),
-(49, 2, 1, 'Boleta', '001', '0000003', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(50, 2, 1, 'Boleta', '001', '0000004', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 500, 'Aceptado', NULL),
-(51, 4, 1, 'Boleta', '001', '0000005', '2021-06-17 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(52, 2, 1, 'Boleta', '001', '0000006', '2021-06-17 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(53, 2, 1, 'Boleta', '001', '0000007', '2021-06-18 00:00:00', '18.00', '505.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(54, 4, 1, 'Boleta', '001', '0000008', '2021-05-01 00:00:00', '18.00', '25.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 25, 'Aceptado', NULL),
-(55, 4, 1, 'Boleta', '001', '0000009', '2021-06-19 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(56, 2, 1, 'Factura', '001', '0000001', '2021-06-19 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(57, 4, 1, 'Nota', '001', '0000001', '2021-06-19 00:00:00', '0.00', '1000.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(58, 2, 1, 'Boleta', '001', '0000010', '2021-06-20 00:00:00', '18.00', '1000.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(59, 2, 1, 'Boleta', '001', '0000011', '2021-06-21 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(60, 2, 1, 'Boleta', '001', '0000012', '2021-06-21 00:00:00', '18.00', '180.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 10, 0, 0, 'Aceptado', NULL),
-(61, 2, 1, 'Boleta', '001', '0000013', '2021-06-22 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(62, 2, 1, 'Boleta', '001', '0000014', '2021-06-23 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(64, 2, 1, 'Boleta', '001', '0000015', '2021-06-25 00:00:00', '18.00', '25.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(65, 2, 1, 'Boleta', '001', '0000016', '2021-06-25 00:00:00', '18.00', '200.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(66, 4, 1, 'Boleta', '001', '0000017', '2021-06-25 00:00:00', '18.00', '25.00', 'No', 'Transferencia', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(67, 2, 1, 'Boleta', '001', '0000018', '2021-06-25 00:00:00', '18.00', '4100.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 5000, 900, 'Aceptado', NULL),
-(68, 2, 1, 'Boleta', '001', '0000019', '2021-06-29 00:00:00', '18.00', '825.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 175, 'Aceptado', NULL),
-(69, 2, 1, 'Boleta', '001', '0000020', '2021-07-01 00:00:00', '18.00', '500.00', 'No', 'Tarjeta', '0221212458454', '2021-07-01 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(70, 2, 2, 'Boleta', '001', '0000021', '2021-07-04 00:00:00', '18.00', '25.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(71, 2, 1, 'Boleta', '001', '0000022', '2021-07-04 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(72, 2, 1, 'Boleta', '001', '0000023', '2021-03-01 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(73, 2, 1, 'Boleta', '001', '0000024', '2021-07-08 00:00:00', '18.00', '500.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(74, 2, 1, 'Boleta', '001', '0000025', '2021-07-10 00:00:00', '18.00', '500.00', 'Si', 'Tarjeta', '11212', '2021-07-10 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(75, 2, 1, 'Boleta', '001', '0000026', '2021-07-11 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Anulado', NULL),
-(76, 2, 1, 'Boleta', '001', '0000027', '2021-07-11 00:00:00', '18.00', '500.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Anulado', NULL),
-(77, 4, 1, 'Boleta', '001', '0000028', '2021-07-12 00:00:00', '18.00', '200.00', 'Si', 'Efectivo', '', '0000-00-00 00:00:00', 0, 0, 0, 'Aceptado', NULL),
-(78, 2, 1, 'Boleta', '001', '0000029', '2022-03-26 00:00:00', '18.00', '720.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 280, 'Aceptado', NULL),
-(79, 4, 1, 'Boleta', '001', '0000030', '2022-03-27 00:00:00', '18.00', '400.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 500, 100, 'Aceptado', NULL),
-(80, 2, 1, 'Boleta', '001', '0000031', '2022-03-27 00:00:00', '18.00', '400.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 1000, 600, 'Aceptado', NULL),
-(81, 4, 1, 'Boleta', '001', '0000032', '2022-03-27 00:00:00', '18.00', '10.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 40, 'Aceptado', NULL),
-(82, 2, 1, 'Boleta', '001', '0000033', '2022-03-27 00:00:00', '18.00', '30.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 20, 'Aceptado', NULL),
-(83, 5, 1, 'Boleta', '001', '0000034', '2022-03-27 00:00:00', '18.00', '40.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 100, 60, 'Aceptado', NULL),
-(84, 4, 1, 'Boleta', '001', '0000035', '2022-03-27 00:00:00', '18.00', '10.00', 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 50, 40, 'Aceptado', NULL);
+	(1, 2, 1, 'Boleta', '001', '0000001', '2022-03-27 00:00:00', 16.00, 10.00, 'No', 'Efectivo', '', '0000-00-00 00:00:00', 0, 20, 10, 'Aceptado', NULL);
+/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idcategoria`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
-
---
--- Indices de la tabla `datos_negocio`
---
-ALTER TABLE `datos_negocio`
-  ADD PRIMARY KEY (`id_negocio`);
-
---
--- Indices de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
-  ADD PRIMARY KEY (`iddetalle_venta`),
-  ADD KEY `fk_detalle_venta_venta_idx` (`idventa`),
-  ADD KEY `fk_detalle_venta_producto1_idx` (`idproducto`);
-
---
--- Indices de la tabla `movimiento`
---
-ALTER TABLE `movimiento`
-  ADD PRIMARY KEY (`idmovimiento`);
-
---
--- Indices de la tabla `permiso`
---
-ALTER TABLE `permiso`
-  ADD PRIMARY KEY (`idpermiso`);
-
---
--- Indices de la tabla `persona`
---
-ALTER TABLE `persona`
-  ADD PRIMARY KEY (`idpersona`);
-
---
--- Indices de la tabla `personal`
---
-ALTER TABLE `personal`
-  ADD PRIMARY KEY (`idpersonal`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`idproducto`),
-  ADD KEY `fk_producto_categoria1_idx` (`idcategoria`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`),
-  ADD UNIQUE KEY `login_UNIQUE` (`login`),
-  ADD KEY `fk_usuario_personal1_idx` (`idpersonal`);
-
---
--- Indices de la tabla `usuario_permiso`
---
-ALTER TABLE `usuario_permiso`
-  ADD PRIMARY KEY (`idusuario_permiso`),
-  ADD KEY `fk_usuario_permiso_permiso_idx` (`idpermiso`),
-  ADD KEY `fk_usuario_permiso_usuario_idx` (`idusuario`);
-
---
--- Indices de la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD PRIMARY KEY (`idventa`),
-  ADD KEY `fk_venta_persona_idx` (`idcliente`),
-  ADD KEY `fk_venta_Personal1_idx` (`idPersonal`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `datos_negocio`
---
-ALTER TABLE `datos_negocio`
-  MODIFY `id_negocio` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `movimiento`
---
-ALTER TABLE `movimiento`
-  MODIFY `idmovimiento` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `permiso`
---
-ALTER TABLE `permiso`
-  MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `persona`
---
-ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `personal`
---
-ALTER TABLE `personal`
-  MODIFY `idpersonal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `producto`
---
-ALTER TABLE `producto`
-  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `usuario_permiso`
---
-ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
---
--- AUTO_INCREMENT de la tabla `venta`
---
-ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-COMMIT;
-
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
