@@ -108,14 +108,14 @@ require_once "../modelos/Consultas.php";
                     <div class="box-header with-border">
                           <h1 class="box-title">Inicio </h1>
                           <small>Panel de control</small>
-                        <div class="box-tools pull-right">
+                        <!--<div class="box-tools pull-right">
                           <button class="btn btn-box-tool" data-widget="collapse">
                           <i class="fa fa-minus"></i>
                           </button>
                           <button class="btn btn-box-tool" data-widget="remove">
                           <i class="fa fa-times"></i>
                           </button>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- /.box-header -->
                     <!-- centro -->
