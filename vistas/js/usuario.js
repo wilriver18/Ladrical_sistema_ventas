@@ -98,6 +98,7 @@ function listar()
 }
 //Función para guardar o editar
 
+
 function guardaryeditar(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento
